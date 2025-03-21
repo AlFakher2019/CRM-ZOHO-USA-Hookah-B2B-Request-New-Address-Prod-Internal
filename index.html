@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hookah&#x20;Request&#x20;New&#x20;Address&#x20;Test</title>
     <link href="css/form.css" rel="stylesheet" type="text/css" />
     <script src="js/validation.js"></script>
@@ -192,7 +192,7 @@
                       name="Email"
                       checktype="c5"
                       value=""
-                      placeholder=""
+                      placeholder="Please Enter Main Email of the Account/Company"
                       id="Email"
                   /></span>
                   <p
@@ -273,7 +273,12 @@
                         name="Dropdown3"
                         checktype="c1"
                       >
-                        <option value="" id="country" selected="selected" disabled>
+                        <option
+                          value=""
+                          id="country"
+                          selected="selected"
+                          disabled
+                        >
                           Select Country
                         </option>
                         <option value="ALA">Åland Islands</option>
@@ -1156,6 +1161,19 @@
           event.preventDefault(); // Prevent form from being submitted through enter key
           zf_ValidateAndSubmit();
         }
+      });
+    </script>
+    <script>
+      var input = document.querySelector(
+        "#international_PhoneNumber_countrycode"
+      );
+      function setInitialPhoneNumber() {
+        var countryData = iti.getSelectedCountryData();
+        input.value = `+${countryData.dialCode} `;
+      }
+      setTimeout(setInitialPhoneNumber, 100);
+      input.addEventListener("countrychange", function () {
+        setInitialPhoneNumber();
       });
     </script>
   </body>
